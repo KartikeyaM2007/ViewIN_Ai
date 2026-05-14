@@ -1,89 +1,127 @@
-# Inview_AI
+# 🤖 InView.AI — Futuristic RAG Mock Interview & ATS Platform
 
-Inview_AI is a modern web application built with **Next.js**, designed to streamline interview creation, participation, and feedback. It leverages **Firebase** and **TailwindCSS** with support from **shadcn/ui** components for a stylish, responsive experience.
+<div align="center">
+  <p align="center">
+    <b>Master your next technical interview. Before it even happens.</b>
+  </p>
+  <p>An ultra-modern SaaS platform built with <b>Next.js 15</b>, powered by <b>Google Gemini 2.5</b> and <b>Vapi Voice AI</b>, featuring real-time conversational mock interviews and comprehensive glassmorphic ATS analytics.</p>
 
-# Link to Website
-https://inview-ai.vercel.app/
+  <a href="https://inview-ai.vercel.app/"><strong>Explore the App »</strong></a>
+</div>
 
-## ✨ Features
+---
 
-- 🔐 Authentication with Sign In / Sign Up pages
-- 🎤 Resume-based Interview Creation
-- 📋 Interview Feedback & Scoring
-- 📄 Resume Analysis + ATS Scoring
-- 🧠 Smart AI integration (via Vapi)
+## ✨ High-End Features
 
-- ⚙️ Firebase Admin SDK & Session Cookies for Auth
-- ✨ Smooth UI/UX with shadcn/ui + Tailwind
+- 🔐 **Enterprise-Grade Auth**: Unified Firebase Client SDK & HTTP-Only Admin session cookies.
+- 🎤 **Adaptive Voice Interviews**: Real-time, ultra-low latency vocal conversations driven by Vapi AI & GPT-4.
+- 🧠 **Cognitive Question Generation**: Tailored, dynamic technical questioning derived directly from resume architecture parsing.
+- 📊 **Glassmorphic ATS Analyzer**: Smart, localized resume keyword scoring, strengths mapping, and automated gap optimization plans.
+- 📈 **Analytical Performance Portals**: Dynamic breakdowns evaluating communication clarity, role-fit, and concept mastery.
 
-## Tech Stack
+---
 
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [shadcn/ui](https://ui.shadcn.com/)
-- [Firebase](https://firebase.google.com/)
-- [Vapi API](https://vapi.ai/) 
+## 🔄 System Workflow & Architecture
 
-## Getting Started
+Below is the underlying operational data pipeline visualizing how InView.AI processes documents, establishes AI calls, and renders diagnostics:
 
+```mermaid
+graph TD
+    %% Nodes
+    User([Candidate User]) -- "1. Uploads PDF" --> Frontend[Glassmorphic Dashboard]
+    Frontend -- "2. Secure POST" --> API_Resume[Resume Parser API]
+    API_Resume -- "3. Local Extractor" --> PDF[pdf-parse Engine]
+    PDF -- "4. Context String" --> Gemini_Parse[Gemini 2.5 Flash]
+    Gemini_Parse -- "5. Struct JSON & Qs" --> Firestore[(Google Firestore DB)]
+    
+    Firestore -- "6. Load Profile" --> Agent[Vapi Voice Client]
+    Agent <--> Vapi_Server[Vapi cloud Real-Time Node]
+    Vapi_Server <--> OpenAI[OpenAI Agent Logic]
+    
+    User -- "7. Voice Conversation" --> Agent
+    Agent -- "8. Call Finalized & Log" --> Feedback_Action[Feedback Engine]
+    Feedback_Action -- "9. Evaluate Transcript" --> Gemini_Evaluation[Gemini 2.0 Flash]
+    Gemini_Evaluation -- "10. Score & Strengths" --> Result_View[Feedback Analytics UI]
 
-
+    %% Styling
+    style User fill:#4F46E5,stroke:#312E81,stroke-width:2px,color:#fff
+    style Firestore fill:#F59E0B,stroke:#B45309,stroke-width:2px,color:#fff
+    style Gemini_Parse fill:#8B5CF6,stroke:#6D28D9,stroke-width:2px,color:#fff
+    style Gemini_Evaluation fill:#8B5CF6,stroke:#6D28D9,stroke-width:2px,color:#fff
+    style Agent fill:#10B981,stroke:#047857,stroke-width:2px,color:#fff
 ```
+
+---
+
+## 🛠️ Modular Tech Stack
+
+| Layer | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Core Runtime** | **Next.js 15 (Turbopack)** | React Framework, Server Actions & Performance Optimization |
+| **Styling** | **TailwindCSS v4 + Framer Motion** | Cinematic, GPU-accelerated layout animations & Dark Mode |
+| **AI Engine** | **Google Gemini 2.5 & Vercel AI SDK** | Resume feature extraction, question routing & analysis |
+| **Voice Node** | **Vapi Web SDK (Nova-2 / 11Labs)** | Real-time streaming WebRTC conversational voice synthesis |
+| **Database** | **Google Firestore** | User documents persistence and interview records archive |
+| **Authentication** | **Firebase Native Auth** | Client password logins and server-validated tokens |
+| **Parsers** | **PDF-Parse & Mammoth** | In-memory raw PDF/DOCX textual sequence mapping |
+
+---
+
+## 🚀 Deployment & Local Setup
+
+### 1. System Requirements
+Verify that you meet the environment prerequisites detailed in [**requirements.txt**](file:///e:/PROJECTS/Rag_Interview_Ai/requirements.txt):
+*   Node.js >= 20.0.0
+*   NPM >= 10.0.0
+
+### 2. Clone & Initialise
+```bash
 git clone https://github.com/yourusername/inview_ai.git
-cd inview_ai/inview_ai
+cd inview_ai
 ```
 
-## 2. Install Dependencies
-
+### 3. Install Dependencies
+Execute the standard Node package alignment:
+```bash
 npm install
-or
-yarn install
-
-## 3. Environment Variables
-```
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-FIREBASE_PRIVATE_KEY=your_private_key
-FIREBASE_CLIENT_EMAIL=your_client_email
-GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_key
-NEXT_PUBLIC_VAPI_WEB_TOKEN=your_vapi_token
 ```
 
-## 4.Run the Development Server
-```
+### 4. Set Up Credentials
+1.  Copy the secure environment blueprint:
+    ```bash
+    copy .env.example .env.local
+    ```
+2.  Configure your secret platform credentials inside [**.env.local**](file:///e:/PROJECTS/Rag_Interview_Ai/.env.local):
+    *   `GOOGLE_GENERATIVE_AI_API_KEY` (from Google AI Studio)
+    *   `NEXT_PUBLIC_VAPI_WEB_TOKEN` & `NEXT_PUBLIC_VAPI_WORKFLOW_ID` (from Vapi Account)
+    *   Firebase Web Configs & Firestore Service Account Keys.
+
+### 5. Fire Up the Dev Engine
+```bash
 npm run dev
 ```
+The app will spin up instantly on **[http://localhost:3000](http://localhost:3000)**.
 
-## 5. Project Structure
+---
 
-```
-inview_ai/
-├── app/                  # Application routes
-│   ├── (auth)/           # Sign in / Sign up pages
-│   ├── (root)/           # Main app routes like dashboard, interview
-│   └── api/              # API routes (e.g., Vapi)
-├── components/           # UI components (if applicable)
-├── constants/            # Global constants
-├── types/                # TypeScript definitions
-├── public/               # Static assets
-├── styles/               # Global styles
-├── .env.local            # Environment variables (not committed)
-├── package.json
-└── tsconfig.json
-```
+## ⚡ Terminal Scripts
 
+*   **`npm run dev`**: Boots local Next.js Turbopack development node.
+*   **`npm run build`**: Compiles optimized static, typed, and minified server bundle.
+*   **`npm run lint`**: Runs Next ES-Lint syntax diagnostic scans.
 
-## 6. Scripts
-```
-npm run dev – Start the development server
+---
 
-npm run build – Build for production
+## 🤝 Contributing
+Pull requests are highly welcome. For major paradigm or architectural changes, please open a collaborative GitHub issue first to map features before proceeding.
 
-npm run lint – Lint the project
-```
+---
 
-<b><u>Contributing</u></b>
+## ✍️ Author
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+**Kartikeya Mishra** — [GitHub](https://github.com/KartikeyaM2007)
+
+---
+<div align="center">
+  <sub>Developed with ❤️ and state-of-the-art AI Orchestration.</sub>
+</div>
