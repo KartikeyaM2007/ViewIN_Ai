@@ -1,0 +1,23 @@
+# ==========================================================
+# Python Utilities & Support Tools for RAG Interview AI
+# ==========================================================
+# This project uses Next.js (JavaScript) as its core engine.
+# Core dependencies are managed via NPM (`npm install`).
+#
+# The dependencies below are for Python virtual environment (`venv`) utilities 
+# if you choose to execute localized python scripts or RAG pipeline tasks.
+
+# Google Gemini API client for Python
+google-generativeai>=0.8.0
+
+# Configuration utilities
+python-dotenv>=1.0.1
+
+# PDF and document extraction helpers
+pypdf>=4.2.0
+docx2txt>=0.8
+
+# Web framework baseline (in case of future FastAPI integration)
+fastapi>=0.111.0
+uvicorn>=0.30.0
+pydantic>=2.7.0
